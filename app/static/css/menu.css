@@ -1,0 +1,189 @@
+
+body {
+    background-color: #1b1b1b;
+    background-image: url("../img/pizzaback.png");
+    min-height: 100vh;
+    height: 100%;
+    overflow-y: hidden;
+    color: #000000;
+  }
+
+.BarraTopo {
+    color: white;
+    display: flex;
+    user-select: none;
+    background: #414141;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+}
+
+.BarraTopoLeft {
+    display: flex;
+    user-select: none;
+    width: 70%;
+    align-items: center;
+}
+
+.BarraTopoRight {
+    display: flex;
+    user-select: none;
+    width: 30%;
+    align-items: center;
+    height: 100%;
+    justify-content: right;
+}
+
+.Usu {
+    font-size:1.2rem;
+}
+
+.BarraTopo button {
+    box-shadow: 2px 2px 0 2px #4b4b4b;
+    border-width: 1px;
+    border-color: #979797;
+    background-color: #737373;
+    margin-top: 40px;
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 40px;
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: Rubik-Bold;
+    /* color: #060014; */
+    color: white;
+}
+
+.BarraTopo button:active {
+    border: none;
+    background-color: #4b4b4b;
+}
+
+.Logo {
+    user-select: none;
+    height: 100px;
+}
+
+.MenuPart {
+    width: 100%;
+    height: 86vh;
+}
+
+/*Tab buttons*/
+
+.tab-buttons {
+    display: flex;
+    gap: 1px;
+}
+
+.tab-btn {
+    height: 6.1vh;
+    background-color: #414141;
+    border-width: 0px;
+    color: white;
+    border-radius: 6px 6px 0px 0px;
+    font-size: 1.5rem;
+    font-family: Rubik-Bold;
+    width: 33.333%;
+    transition: background-color 0.3s ease;
+}
+
+.tab-btn.active {
+    border: none;
+    color: rgb(0, 0, 0);
+    background-color: rgb(202, 202, 202);
+}
+
+.tab-btn:hover {
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: #858585;
+}
+
+.tab-btn.active:hover {
+    border: none;
+    color: rgb(0, 0, 0);
+    background-color: rgb(204, 204, 204);
+}
+
+/*Tab contents*/
+
+.tab-contents{
+    display: flex;
+    background-color: rgb(201, 201, 201);
+    width: 100%;
+    height: 79.9vh
+}
+
+.content {
+    display: none;
+    width: 100%;
+}
+
+.content.show {
+    display: list-item;
+    user-select: none;
+}
+
+/*Items in Content*/
+
+.item{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    height: 20vh;
+    margin: 0.4%;
+    width: 99.2%;
+}
+
+.itemImg {
+    border-radius: 20px;
+    background-color: rgb(233, 233, 233);
+    width: 9.6%;
+    height: 96.2%;
+    margin: 0.2%;
+}
+
+.img {
+    height: 100%;
+    width: 100%;
+}
+
+.itemInfo {
+    display: block;
+    width: 89.6%;
+    height: 96.6%;
+    margin: 0.2%;
+}
+
+.nomeitem {
+    display: flex;
+    height: 24.2%;
+    width: 99.6%;
+    margin: 0.2%;
+    align-items: center;
+    align-content: center;
+}
+
+.info {
+    display: flex;
+    height: 49.2%;
+    width: 99.6%;
+    margin: 0.2%;
+}
+
+.preço {
+    display: flex;
+    height: 20.2%;
+    width: 99.6%;
+    margin: 0.2%;
+    justify-content: end;
+    align-items: center;
+}
+
+
+.item:hover {
+    background-color: rgb(224, 224, 224);
+}

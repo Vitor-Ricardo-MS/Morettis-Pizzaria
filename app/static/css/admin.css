@@ -1,0 +1,205 @@
+.prods {
+    height: 43vh;
+}
+
+.saborss {
+    height: 43vh;
+}
+
+.shelf {
+    display: flex;
+    width: 100%;
+    gap: 0.2%;
+}
+
+.create {
+    width: 33.1%;
+}
+
+.edit {
+    width: 33.1%;
+}
+
+.delete {
+    width: 33.1%;
+}
+
+/*Tab Buttons*/
+
+.PrCrButtons {
+    display: flex;
+    gap: 1px;
+}
+
+.PrCrBtn {
+    height: 6.1vh;
+    background-color: #414141;
+    border-width: 0px;
+    color: white;
+    border-radius: 6px 6px 0px 0px;
+    font-size: 1.5rem;
+    font-family: Rubik-Bold;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.PrCrBtn.active {
+    border: none;
+    color: rgb(0, 0, 0);
+    background-color: rgb(202, 202, 202);
+}
+
+.PrCrBtn:hover {
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: #858585;
+}
+
+.PrCrBtn.active:hover {
+    border: none;
+    color: rgb(0, 0, 0);
+    background-color: rgb(204, 204, 204);
+}
+
+.SbButtons {
+    display: flex;
+    gap: 1px;
+}
+
+.SbBtn {
+    height: 6.1vh;
+    background-color: #414141;
+    border-width: 0px;
+    color: white;
+    border-radius: 6px 6px 0px 0px;
+    font-size: 1.5rem;
+    font-family: Rubik-Bold;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.SbBtn.active {
+    border: none;
+    color: rgb(0, 0, 0);
+    background-color: rgb(202, 202, 202);
+}
+
+.SbBtn:hover {
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: #858585;
+}
+
+.SbBtn.active:hover {
+    border: none;
+    color: rgb(0, 0, 0);
+    background-color: rgb(204, 204, 204);
+}
+
+/*Tab contents*/
+
+.PrCrContents{
+    display: flex;
+    background-color: rgb(201, 201, 201);
+    width: 100%;
+    height: 33vh
+}
+
+.PrCrContent {
+    display: none;
+    width: 100%;
+}
+
+.PrCrContent.show {
+    display: block;
+    user-select: none;
+    align-items: center;
+}
+
+.SbContents{
+    display: flex;
+    background-color: rgb(201, 201, 201);
+    width: 100%;
+    height: 33vh
+}
+
+.SbContent {
+    display: none;
+    width: 100%;
+}
+
+.SbContent.show {
+    display: block;
+    user-select: none;
+    align-items: center;
+}
+
+/*Inputs*/
+
+.PrCrContent form{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.SbContent form{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.inputs {
+    display: flex;
+    margin-left: 3%;
+    margin-right: 6%;
+    margin-bottom: 3%;
+}
+
+.inputs h3 {
+    width: 80px;
+    margin-right: 6%;
+}
+
+.Tipo{
+    width: 170px;
+}
+
+.inputs input {
+    font-size: 2rem;
+}
+
+.inputs input[type = checkbox] {
+    width: 43px;
+    height: 43px;
+    margin: 0;
+}
+
+.inputs select {
+    font-size: 2rem;
+}
+
+.inputsleft {
+    margin-top: 3%;
+    width: 100%;
+    height: 70%;
+    display: block;
+}
+
+.inputsbutt{
+    display: flex;
+    margin-left: 3%;
+    align-items: center;
+}
+
+.inputsbutt button{
+    box-shadow: 2px 2px 0 2px #4b4b4b;
+    border-width: 1px;
+    border-color: #979797;
+    background-color: #737373;
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: Rubik-Bold;
+    color: white;
+}

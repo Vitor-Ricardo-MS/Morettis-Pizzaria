@@ -1,0 +1,1 @@
+[{"tipo": "bebida", "preco": 7.5, "img": null, "sabor": null, "nome": "Coca_500ml", "alcoolico": false}, {"tipo": "sobremesa", "preco": 8.99, "img": null, "sabor": null, "nome": "Bolo"}, {"tipo": "sobremesa", "preco": 9.99, "img": null, "sabor": null, "nome": "Sorvete"}, {"tipo": "sobremesa", "preco": 15.0, "img": null, "sabor": null, "nome": "Gelato"}]
