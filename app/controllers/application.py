@@ -43,7 +43,13 @@ class Application():
         return template('app/views/html/tela_inicial')
     
     def admin(self):
-        return template('app/views/html/admin', Allprodutos = self.produtos.models, Allsabores = self.sabores.sabores)
+        session_id = self.get_session_id()
+        user = self.__model.getCurrentUser(session_id)
+        if user:
+            if user.username == "admin":
+                return template('app/views/html/admin', current_user=user, Allprodutos = self.produtos.models, Allsabores = self.sabores.sabores)
+            return redirect(f'/usuario/{user.username}')
+        return redirect('/login')
     
     def menu(self, username=None):
         if username:
@@ -104,6 +110,31 @@ class Application():
         else:
             self.produtos.book(tipo, preço, nome, False)
 
+    def edit_Prod(self, tipo, nome, param, value):
+        if param == "alcoolico":
+            if value == "true":
+                temp = True
+                self.produtos.update(tipo, nome, param, temp)
+            elif value == "false":
+                temp = False
+                self.produtos.update(tipo, nome, param, temp)
+            return False
+        elif param == "nome":
+            print('nome')
+            self.produtos.update(tipo, nome, param, value)
+            self.sabores.updateName(tipo, nome, value)
+        else:
+            self.produtos.update(tipo, nome, param, value)
+
+    def del_Prod(self, tipo, nome):
+        self.produtos.delete(tipo, nome)
+
     def add_Sab(self, tipo, sabor, nome=None):
-            print(f' > {tipo} , {sabor} , {nome} <')
-            self.sabores.update(tipo, sabor, nome)
+        self.sabores.add(tipo, sabor, nome)
+
+    def edit_Sab(self, tipo, oldval, value, nome=None):
+        self.sabores.update(tipo, oldval, value, nome)
+
+    def del_Sab(self, tipo, sabor, nome=None):
+        print(f' < {tipo}, {nome}, {sabor} >')
+        self.sabores.delete(tipo, sabor, nome)

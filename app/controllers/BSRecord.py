@@ -27,11 +27,9 @@ class BSRecord():
         
         if tipo == "bebida":
             new_model = Bebida(tipo, preco, nome, alcoolico, sabor)
-            print(new_model)
         elif tipo == "sobremesa":
             new_model = Sobremesa(tipo, preco, nome, sabor)
         else:
-            print(f'wtf')
             return 0
 
         self.models.append(new_model)
@@ -40,30 +38,18 @@ class BSRecord():
             json.dump(model_data, arquivo_json)
     
     def update(self, tipo, nome, paramname, paramvalue):
-        self.mudarParamAuto = {
-           "Tipo" : 'tipo',
-           "Preco" : 'preco',
-           "Sabor" : 'sabor',
-           "Imagem" : 'img',
-           "Nome" : 'nome',
-           "Alcoolico" : 'alcoolico'
-        }
-
-        for model in self.models:
-            if tipo == model["tipo"]:
-                if nome == model["nome"]:
-                    param = self.mudarParamAuto.get(paramname, "nada")
-                    if(param != "nada"):
-                        model.update({param : paramvalue})
-                        self.save()
-                        return True
-                    return False
-        return False
+        with open("app/controllers/db/bs.json", "w") as arquivo_json:
+            model_data = [vars(model) for model in self.models]
+            for model in model_data:
+                if model["tipo"] == tipo:
+                    if model["nome"] == nome:
+                        model[paramname] = paramvalue
+            json.dump(model_data, arquivo_json)
     
     def delete(self, tipo, nome):
         for index, model in enumerate(self.models, start=0):
-            if tipo == model["tipo"]:
-                if nome == model["nome"]:
+            if model.tipo == tipo:
+                if model.nome == nome:
                     self.models.pop(index)
                     self.save()
                     return True

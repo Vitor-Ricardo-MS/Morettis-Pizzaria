@@ -42,13 +42,7 @@ def login():
 @app.route('/admin', method='GET')
 @app.route('/admin/<username>', method='GET')
 def admin(username=None):
-    if not username:
-        redirect('/login')
-    else:
-        if username == "admin":
-            return ctl.render('admin')
-        else:
-            redirect('/login')
+    return ctl.render('admin', username)
 
 @app.route('/signup', method='GET')
 def signup():
@@ -95,7 +89,31 @@ def addProd():
     preço = float(request.forms.get('precoProd'))
     alcoolico = request.forms.get('allcProd')
     ctl.add_Prod(tipo, nome, preço, alcoolico)
-    redirect(f'/admin/admin')
+    redirect(f'/admin')
+
+@app.route('/editProd', method='POST')
+def editProd():
+    tipo = request.forms.get('tipoProd')
+    nome = request.forms.get('nomeProd')
+    param = request.forms.get('paramProd')
+    if param == "preco":
+        value = float(request.forms.get('valueProd'))
+    else:
+        value = request.forms.get('valueProd')
+    ctl.edit_Prod(tipo, nome, param, value)
+    redirect(f'/admin')
+
+@app.route('/dellProd', method='POST')
+def delProd():
+    tipo = request.forms.get('tipoProd')
+    nome = request.forms.get('nomeProd')
+    conf = request.forms.get('confDeProd')
+    print(f' > {tipo}, {nome}, {conf} <')
+    if conf:
+        print('conf confirmed')
+        ctl.del_Prod(tipo, nome)
+        redirect(f'/admin')
+    redirect(f'/admin')
 
 @app.route('/addSab', method='POST')
 def addSab():
@@ -103,7 +121,25 @@ def addSab():
     sabor = request.forms.get('nomeSab')
     nome = request.forms.get('nomeProd')
     ctl.add_Sab(tipo, sabor, nome)
-    redirect(f'/admin/admin')
+    redirect(f'/admin')
+
+@app.route('/editSab', method='POST')
+def editSab():
+    tipo = request.forms.get('tipoProd')
+    nome = request.forms.get('nomeProd')
+    oldval = request.forms.get('nomeParam')
+    value = request.forms.get('valueSab')
+    ctl.edit_Sab(tipo, oldval, value, nome)
+    redirect(f'/admin')
+
+@app.route('/dellSab', method='POST')
+def delSab():
+    tipo = request.forms.get('tipoProd')
+    nome = request.forms.get('nomeProd')
+    sabor = request.forms.get('nomeSab')
+    print(f' > {tipo}, {nome}, {sabor} <')
+    ctl.del_Sab(tipo, sabor, nome)
+    redirect(f'/admin')
 
 #-----------------------------------------------------------------------------
 

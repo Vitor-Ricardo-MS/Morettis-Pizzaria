@@ -26,18 +26,21 @@ class SaborRecord():
         with open("app/controllers/db/sabores.json", "w") as arquivo_json:
             sabor_data = [vars(sabor) for sabor in self.sabores]
             json.dump(sabor_data, arquivo_json)
-    
-    def update(self, tipo, paramvalue, nome = None):
-        indexo = self.modelExists(tipo, nome)
 
-        print(indexo)
+    def updateName(self, tipo, nome, newnome):
+        for model in self.sabores:
+            if model.tipo == tipo:
+                if model.nome == nome:
+                    model.nome = newnome
+                    self.save()
+        return False
+                
+    def add(self, tipo, paramvalue, nome = None):
+        indexo = self.modelExists(tipo, nome)
         
         if indexo != False:
             for index, model in enumerate(self.sabores, start=0):
-                print(f'{index} -')
-                if indexo == index:
-                    for taste in model.listaSabor:
-                        print(taste)
+                if (indexo-1) == index:
                     if not self.saborExists(model.listaSabor, paramvalue):
                         model.listaSabor.append(paramvalue)
                         self.save()
@@ -46,16 +49,46 @@ class SaborRecord():
         else:
             self.book(tipo, nome, paramvalue)
             return True
+        
+    def update(self, tipo, oldval, val, nome):
+
+        for model in self.sabores:
+            if model.tipo == tipo:
+                if nome:
+                    if model.nome == nome:
+                        for index, taste in enumerate(model.listaSabor, start=0):
+                            if taste == oldval:
+                                model.listaSabor[index] = val
+                                self.save()
+                                return True
+                elif tipo == "pizza":
+                    for index, taste in enumerate(model.listaSabor, start=0):
+                            if taste == oldval:
+                                model.listaSabor[index] = val
+                                self.save()
+                                return True
+        return False
     
-    def delete(self, tipo, nome):
+    def delete(self, tipo, sabor, nome = None):
+        print(f' >{tipo}, {nome}, {sabor}<')
         for  model in self.sabores:
-            if tipo == model["tipo"]:
-                if nome == model["nome"]:
-                    for index, sabor in enumerate(model.listaSabor, start=0):
-                        model.listaSabor.pop(index)
-                        self.save()
-                        return True
-                    return False
+            if model.tipo == tipo:
+                if nome:
+                    if model.nome == nome:
+                        print(model.nome)
+                        for index, taste in enumerate(model.listaSabor, start=0):
+                            if taste == sabor:
+                                print(taste)
+                                model.listaSabor.pop(index)
+                                self.save()
+                                return True
+                elif tipo == "pizza":
+                    for index, taste in enumerate(model.listaSabor, start=0):
+                            if taste == sabor:
+                                print(taste)
+                                model.listaSabor.pop(index)
+                                self.save()
+                                return True           
         return False
         
     def save(self):
@@ -64,12 +97,13 @@ class SaborRecord():
             json.dump(sabor_data, arquivo_json)
 
     def modelExists(self, tipo, nome=None):
-        for index, model in enumerate(self.sabores, start=0):
+        for index, model in enumerate(self.sabores, start=1):
             if model.tipo == tipo:
                 if nome:
                     if model.nome == nome:
                         return index
-                return index
+                elif tipo == "pizza":
+                    return index
         return False
 
     def saborExists(self, listaSabor, sabor):

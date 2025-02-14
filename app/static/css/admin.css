@@ -1,9 +1,45 @@
+.BarraTopo {
+    color: white;
+    display: flex;
+    user-select: none;
+    background: #414141;
+    margin-bottom: 20px;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    gap: 5px;
+}
+
+.BarraTopoText {
+    width: 82.3%;
+    margin-left: 10px;
+}
+
+.BarraTopo button {
+    box-shadow: 2px 2px 0 2px #4b4b4b;
+    border-width: 1px;
+    border-color: #979797;
+    background-color: #737373;
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: Rubik-Bold;
+    /* color: #060014; */
+    color: white;
+}
+
+.BarraTopo button:active {
+    border: none;
+    background-color: #4b4b4b;
+}
+
 .prods {
-    height: 43vh;
+    height: 45vh;
 }
 
 .saborss {
-    height: 43vh;
+    height: 45vh;
 }
 
 .shelf {
@@ -26,12 +62,12 @@
 
 /*Tab Buttons*/
 
-.PrCrButtons {
+.TabButtons {
     display: flex;
     gap: 1px;
 }
 
-.PrCrBtn {
+.TabButtons button {
     height: 6.1vh;
     background-color: #414141;
     border-width: 0px;
@@ -43,54 +79,19 @@
     transition: background-color 0.3s ease;
 }
 
-.PrCrBtn.active {
+.TabButtons button.active {
     border: none;
     color: rgb(0, 0, 0);
     background-color: rgb(202, 202, 202);
 }
 
-.PrCrBtn:hover {
+.TabButtons button:hover {
     border: none;
     color: rgb(255, 255, 255);
     background-color: #858585;
 }
 
-.PrCrBtn.active:hover {
-    border: none;
-    color: rgb(0, 0, 0);
-    background-color: rgb(204, 204, 204);
-}
-
-.SbButtons {
-    display: flex;
-    gap: 1px;
-}
-
-.SbBtn {
-    height: 6.1vh;
-    background-color: #414141;
-    border-width: 0px;
-    color: white;
-    border-radius: 6px 6px 0px 0px;
-    font-size: 1.5rem;
-    font-family: Rubik-Bold;
-    width: 100%;
-    transition: background-color 0.3s ease;
-}
-
-.SbBtn.active {
-    border: none;
-    color: rgb(0, 0, 0);
-    background-color: rgb(202, 202, 202);
-}
-
-.SbBtn:hover {
-    border: none;
-    color: rgb(255, 255, 255);
-    background-color: #858585;
-}
-
-.SbBtn.active:hover {
+.TabButtons button.active:hover {
     border: none;
     color: rgb(0, 0, 0);
     background-color: rgb(204, 204, 204);
@@ -98,11 +99,11 @@
 
 /*Tab contents*/
 
-.PrCrContents{
+.TabContents{
     display: flex;
     background-color: rgb(201, 201, 201);
     width: 100%;
-    height: 33vh
+    height: 35vh
 }
 
 .PrCrContent {
@@ -116,19 +117,56 @@
     align-items: center;
 }
 
-.SbContents{
-    display: flex;
-    background-color: rgb(201, 201, 201);
-    width: 100%;
-    height: 33vh
-}
-
-.SbContent {
+.PrEdContent {
     display: none;
     width: 100%;
 }
 
-.SbContent.show {
+.PrEdContent.show {
+    display: block;
+    user-select: none;
+    align-items: center;
+}
+
+.PrDeContent {
+    display: none;
+    width: 100%;
+}
+
+.PrDeContent.show {
+    display: block;
+    user-select: none;
+    align-items: center;
+}
+
+.SbCrContent {
+    display: none;
+    width: 100%;
+}
+
+.SbCrContent.show {
+    display: block;
+    user-select: none;
+    align-items: center;
+}
+
+.SbEdContent {
+    display: none;
+    width: 100%;
+}
+
+.SbEdContent.show {
+    display: block;
+    user-select: none;
+    align-items: center;
+}
+
+.SbDeContent {
+    display: none;
+    width: 100%;
+}
+
+.SbDeContent.show {
     display: block;
     user-select: none;
     align-items: center;
@@ -136,13 +174,7 @@
 
 /*Inputs*/
 
-.PrCrContent form{
-    display: block;
-    height: 100%;
-    width: 100%;
-}
-
-.SbContent form{
+.TabContents form{
     display: block;
     height: 100%;
     width: 100%;
@@ -156,26 +188,24 @@
 }
 
 .inputs h3 {
-    width: 80px;
+    width: 100px;
     margin-right: 6%;
 }
 
-.Tipo{
-    width: 170px;
-}
-
 .inputs input {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    width: 400px;
 }
 
 .inputs input[type = checkbox] {
     width: 43px;
     height: 43px;
     margin: 0;
+    align-self: center;
 }
 
 .inputs select {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .inputsleft {
