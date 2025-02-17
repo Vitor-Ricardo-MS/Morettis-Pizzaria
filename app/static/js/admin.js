@@ -105,16 +105,3 @@ const SbDeTabClicked = (tab1) => {
 
     content1.classList.add("show");
 }
-
-const SbEdProds = document.querySelectorAll(".SbEdProd");
-
-console.log(SbEdProds)
-
-SbEdProds.forEach(prod => prod.addEventListener('change', () => SbEdChanged(prod)));
-
-const SbEdChanged = (prod) => {
-    const select = document.querySelectorAll(".SbEdValue");
-    select.forEach(content => content.setAttribute("curr", prod.options[prod.selectedIndex].value))
-
-    console.log(prod.getAttribute("curr"))
-}

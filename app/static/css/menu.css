@@ -4,7 +4,7 @@ body {
     background-image: url("../img/pizzaback.png");
     min-height: 100vh;
     height: 100%;
-    overflow-y: hidden;
+    overflow-y: scroll;
     color: #000000;
   }
 
@@ -161,7 +161,7 @@ body {
     margin: 0.2%;
 }
 
-.nomeitem {
+.caixaNome {
     display: flex;
     height: 24.2%;
     width: 99.6%;
@@ -177,10 +177,16 @@ body {
     margin: 0.2%;
 }
 
-.preço {
+.caixaPreço {
     display: flex;
     height: 20.2%;
     width: 99.6%;
+    margin: 0.2%;
+    justify-content: end;
+    align-items: center;
+}
+
+.caixaPreço h3{
     margin: 0.2%;
     justify-content: end;
     align-items: center;
@@ -190,3 +196,107 @@ body {
 .item:hover {
     background-color: rgb(224, 224, 224);
 }
+
+/*Popup*/
+
+.popup {
+    background-color: #b1b1b1;
+    border-radius: 5px;
+    display: flex;
+}
+
+.popupImg {
+    width: 20%;
+    height: fit-content;
+}
+
+.popupContent {
+    width: 100%;
+}
+
+.popupHead {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.popupHead button {
+    background: white;
+    border: none;
+    border-radius: 5px;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+}
+
+.popupHead button:active {
+    background: rgb(185, 185, 185);
+}
+
+.inputs {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+}
+
+.inputs h2 {
+    width: 120px;
+    margin-right: 3%;
+    height: 19;
+}
+
+.inputs input[disabled = ""]{
+    font-size: 1.5rem;
+    width: 400px;
+    color: #000000;
+    background: none;
+    border: none;
+}
+
+/*.TabContents form{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+.inputs input[type = checkbox] {
+    width: 43px;
+    height: 43px;
+    margin: 0;
+    align-self: center;
+}
+
+.inputs select {
+    font-size: 1.5rem;
+}
+
+.inputsleft {
+    margin-top: 3%;
+    width: 100%;
+    height: 70%;
+    display: block;
+}
+
+.inputsbutt{
+    display: flex;
+    margin-left: 3%;
+    align-items: center;
+}
+
+.inputsbutt button{
+    box-shadow: 2px 2px 0 2px #4b4b4b;
+    border-width: 1px;
+    border-color: #979797;
+    background-color: #737373;
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: Rubik-Bold;
+    color: white;
+}*/

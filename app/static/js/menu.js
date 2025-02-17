@@ -15,7 +15,3 @@ const tabClicked = (tab) => {
 
     content.classList.add("show");
 }
-
-
-
-    
