@@ -104,6 +104,20 @@ class Application():
         if session_id:
             self.__model.logout(session_id)
 
+    def getOptions(self, input_value):
+        options = []
+        if input_value == "Pizza":
+            for sab in self.sabores.sabores:
+                if sab.tipo == "pizza":
+                    options = sab.listaSabor
+        else:
+            for sab in self.sabores.sabores:
+                if sab.nome == input_value:
+                    options = sab.listaSabor
+        
+        print(options)
+        return json.dumps(options)
+
     def add_Prod(self, tipo, nome, preço, alcoolico=None):
         if alcoolico:
             self.produtos.book(tipo, preço, nome, True)
@@ -136,5 +150,4 @@ class Application():
         self.sabores.update(tipo, oldval, value, nome)
 
     def del_Sab(self, tipo, sabor, nome=None):
-        print(f' < {tipo}, {nome}, {sabor} >')
         self.sabores.delete(tipo, sabor, nome)

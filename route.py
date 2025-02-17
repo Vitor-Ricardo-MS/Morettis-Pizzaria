@@ -48,6 +48,12 @@ def admin(username=None):
 def signup():
     return ctl.render('signup')
 
+@app.route('/get-options', method='GET')
+def get_options():
+    input_value = request.query.input_value
+    response.content_type = 'application/json'
+    return ctl.getOptions(input_value)
+
 #-----------------------------------------------------------------------------
 # POST:
 
@@ -108,9 +114,7 @@ def delProd():
     tipo = request.forms.get('tipoProd')
     nome = request.forms.get('nomeProd')
     conf = request.forms.get('confDeProd')
-    print(f' > {tipo}, {nome}, {conf} <')
     if conf:
-        print('conf confirmed')
         ctl.del_Prod(tipo, nome)
         redirect(f'/admin')
     redirect(f'/admin')

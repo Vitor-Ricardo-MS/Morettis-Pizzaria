@@ -24,7 +24,6 @@ class BSRecord():
             self.models.append(Bebida("bebida", 5.00, "Água", False))
 
     def book(self, tipo, preco, nome, alcoolico=None, sabor = None):
-        
         if tipo == "bebida":
             new_model = Bebida(tipo, preco, nome, alcoolico, sabor)
         elif tipo == "sobremesa":

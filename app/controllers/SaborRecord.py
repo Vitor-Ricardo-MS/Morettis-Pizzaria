@@ -51,7 +51,6 @@ class SaborRecord():
             return True
         
     def update(self, tipo, oldval, val, nome):
-
         for model in self.sabores:
             if model.tipo == tipo:
                 if nome:
@@ -70,7 +69,6 @@ class SaborRecord():
         return False
     
     def delete(self, tipo, sabor, nome = None):
-        print(f' >{tipo}, {nome}, {sabor}<')
         for  model in self.sabores:
             if model.tipo == tipo:
                 if nome:

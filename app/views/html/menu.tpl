@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/css/menu.css?V45">
+    <link rel="stylesheet" type="text/css" href="/static/css/menu.css?V123124">
     <title>Menu</title>
 </head>
 <body>
@@ -184,85 +184,42 @@
         </div>
         
         <div id="popup" class="popup">
-            <div class="popupImg">
-                <img class='img' src={{'../static/img/Piizzaa.png?V1.1'}}/>
-            </div>
-            <div class="popupContent">
+            <div class="popupStuff">
                 <div class="popupHead">
                     <button id="exitPopup" onclick="closePopup()">X</button>
                 </div>
-                <div class="popupText">
-                    <input type="hidden" id="tipoProd" name="tipoProd" value="">
-                    <div class="inputs nome" id="Nome">
-                        <h2>Produto:</h2>
-                        <input class="nomeProd" type="text" id="nomeProd" name="nomeProd" value="" required disabled>
+                <div class="popupContent">
+                    <div class="popupImg">
+                        <img class='img' src={{'../static/img/Piizzaa.png?V1.1'}}/>
                     </div>
-                    <div class="inputs tam" id="Tam">
-                        <h2>Tamanho:</h2>
-                        <input class="tamProd" type="text" id="tamProd" name="tamProd" value="" required disabled>
+                    <div class="popupText">
+                        <input type="hidden" id="tipoProd" name="tipoProd" value="">
+                        <div class="inputs nome" id="Nome">
+                            <h2>Produto:</h2>
+                            <input class="nomeProd" type="text" id="nomeProd" name="nomeProd" value="" required disabled>
+                        </div>
+                        <div class="inputs tam" id="Tam">
+                            <h2>Tamanho:</h2>
+                            <input class="tamProd" type="text" id="tamProd" name="tamProd" value="" required disabled>
+                        </div>
+                        <div class="inputs prec" id="Prec">
+                            <h2>Preço:</h2>
+                            <input class="precProd" type="text" id="precProd" name="precProd" value="" required disabled>
+                            <p>R$</p>
+                        </div>
+                        <div class="inputs sab" id="Sab">
+                            <h2>Sabor:</h2>
+                            <select class="sabProd" name="sabProd" id="sabProd">
+                            </select>
+                        </div>
                     </div>
-                    <div class="inputs prec" id="prec">
-                        <h2>Preço:</h2>
-                        <input class="precProd" type="text" id="precProd" name="precProd" value="" required disabled>
+                    <div class="popupButt">
+                        <button>Adicionar</button>
                     </div>
-                    <div class="inputs prec" id="prec">
-                        <h2>Sabor:</h2>
-                        <select name="sabores" id="sabores">
-                            %for model in Allsabores:
-                                %if model.tipo == :
-                                    %for sabor in model.listaSabor:
-                                        <option value={{sabor}}>{{sabor}}</option>
-                                    %end
-                                %end
-                            %end
-                        </select>
-                    </div>
-
-                    
                 </div>
             </div>
         </div>
 
-        <script>
-            const Item = document.querySelectorAll(".item");
-
-            Item.forEach(item => item.addEventListener('click', () => ItemClicked(item)));
-
-            const ItemClicked = (item) => {
-                const Popup = document.querySelector(".popup");
-                    
-                const nomepop = Popup.querySelector(".nomeProd");
-                const tampop = Popup.querySelector(".tamProd");
-                const precpop = Popup.querySelector(".precProd");
-
-                const itemNome = item.querySelector(".nomeitem").innerText;
-                const itemTamBox = item.querySelector(".tamanho");
-                const itemPrec = item.querySelector(".preço").innerText;
-                
-                nomepop.setAttribute("value", itemNome)
-                precpop.setAttribute("value", itemPrec)
-                
-                if(itemTamBox != null){
-                    const itemTam = itemTamBox.innerText;
-
-                    tampop.setAttribute("value", itemTam)
-                    const lol = Popup.querySelector(".inputs.tam")
-                    lol.setAttribute("style", "Display: flex;")
-                }else{
-
-                    tampop.setAttribute("value", "")
-                    const lol = Popup.querySelector(".inputs.tam")
-                    lol.setAttribute("style", "Display: none;")
-                }
-            }
-
-            function closePopup(){
-                Popup.classList.remove('open-popup')
-            }
-        </script>
-
-
-
-        <script src = "../static/js/menu.js?V1.6"></script>
+        <script src = "../static/js/menu.js?V1.7"></script>
 </body>
 </html>
