@@ -1,1 +1,1 @@
-[{"username": "Vitor", "password": "vitor12345", "cart": []}, {"username": "Vitor Ricardo", "password": "Moretti", "cart": []}, {"username": "admin", "password": "admin", "cart": []}]
+[{"username": "Vitor", "password": "vitor12345", "cart": [], "pedidos": []}, {"username": "Vitor_Ricardo", "password": "Moretti", "cart": [], "pedidos": []}, {"username": "admin", "password": "admin", "cart": [], "pedidos": []}]

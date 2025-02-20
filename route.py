@@ -1,10 +1,15 @@
 from app.controllers.application import Application
-from bottle import Bottle, route, run, request, static_file
-from bottle import redirect, template, response
+from bottle import Bottle, route, run, request, static_file, redirect, template, response
+import socketio
+import eventlet
 
 
 app = Bottle()
 ctl = Application()
+
+sio = socketio.Server(async_mode='eventlet')
+
+wsgi_app = socketio.WSGIApp(sio, app)
 
 
 #-----------------------------------------------------------------------------
@@ -48,11 +53,19 @@ def admin(username=None):
 def signup():
     return ctl.render('signup')
 
+# get value
+
 @app.route('/get-options', method='GET')
 def get_options():
     input_value = request.query.input_value
     response.content_type = 'application/json'
     return ctl.getOptions(input_value)
+
+@app.route('/get-items', method='GET')
+def get_items():
+    input_value = request.query.input_value
+    response.content_type = 'application/json'
+    return ctl.getItems(input_value)
 
 #-----------------------------------------------------------------------------
 # POST:
@@ -87,6 +100,8 @@ def logout():
     ctl.logout_user()
     response.delete_cookie('session_id')
     redirect('/')
+
+# Admin
 
 @app.route('/addProd', method='POST')
 def addProd():
@@ -141,12 +156,49 @@ def delSab():
     tipo = request.forms.get('tipoProd')
     nome = request.forms.get('nomeProd')
     sabor = request.forms.get('nomeSab')
-    print(f' > {tipo}, {nome}, {sabor} <')
     ctl.del_Sab(tipo, sabor, nome)
     redirect(f'/admin')
+
+#-----------------------------------------------------------------------------
+# Socket
+
+@sio.event
+async def connect(sid, environ):
+    print(sid, 'connected')
+
+@sio.event
+async def disconnect(sid):
+    print(sid, 'disconnected')
+
+@sio.event
+def AddToCart(sid, tipoProd, nomeProd, tamProd, precProd, sabProd):
+    prec = float(precProd)
+    ctl.addToCart(tipoProd, nomeProd, tamProd, prec, sabProd)
+    sio.emit("AddToCart")
+
+@sio.event
+def DelCartItem(sid, tipoItem, currNome, currSab, currTam):
+    ctl.delCartItem(tipoItem, currNome, currSab, currTam)
+    sio.emit("DelCartItem")
+
+@sio.event
+def UpdUserCart(sid, username):
+    Cart = ctl.getCart(username)
+    sio.emit("UpdUserCart", Cart)
+
+@sio.event
+def UpdPrecTotCart(sid, username):
+    Tot = ctl.getCartTot(username)
+    sio.emit("UpdPrecTotCart", Tot)
+
+@sio.event
+def SendPedido(sid, username):
+    ctl.SendPedido(username)
+    sio.emit("SendPedido")
+
 
 #-----------------------------------------------------------------------------
 
 if __name__ == '__main__':
 
-    run(app, host='0.0.0.0', port=8080, debug=True)
+    eventlet.wsgi.server(eventlet.listen(('0.0.0.0', 8080)), wsgi_app)

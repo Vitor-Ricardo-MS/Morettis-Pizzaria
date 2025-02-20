@@ -1,6 +1,11 @@
 from app.controllers.datarecord import DataRecord
 from app.controllers.BSRecord import BSRecord
 from app.controllers.SaborRecord import SaborRecord
+from app.controllers.PedRecord import PedRecord
+from app.models.bebida import Bebida
+from app.models.pizza import Pizza
+from app.models.sobremesa import Sobremesa
+from app.models.pedido import Pedido
 from bottle import template, redirect, request
 import json
 
@@ -21,7 +26,10 @@ class Application():
         self.__model= DataRecord()
         self.sabores = SaborRecord()
         self.produtos = BSRecord()
+        self.__pedidos = PedRecord()
         self.__current_username= None
+
+# Page Funcs
 
     def render(self,page,parameter=None):
         content = self.pages.get(page, self.tela_inicial)
@@ -114,8 +122,7 @@ class Application():
             for sab in self.sabores.sabores:
                 if sab.nome == input_value:
                     options = sab.listaSabor
-        
-        print(options)
+
         return json.dumps(options)
 
     def add_Prod(self, tipo, nome, preço, alcoolico=None):
@@ -151,3 +158,50 @@ class Application():
 
     def del_Sab(self, tipo, sabor, nome=None):
         self.sabores.delete(tipo, sabor, nome)
+
+
+#Socket Funcs
+
+    def addToCart(self, tipo, nome, tam, prec, sab):
+        session_id = self.get_session_id()
+        user = self.__model.getCurrentUser(session_id)
+
+        if tipo == "pizza":
+            new_prod =  Pizza(prec, tam, sab)
+            self.__model.addToCart(user, new_prod)
+        else:
+            for prod in self.produtos.models:
+                if prod.tipo == tipo:
+                    if prod.nome == nome:
+                        new_prod = prod
+                        new_prod.sabor = sab
+                        self.__model.addToCart(user, new_prod)
+
+    def delCartItem(self, tipo, nome, sab, tam):
+        session_id = self.get_session_id()
+        user = self.__model.getCurrentUser(session_id)
+
+        return self.__model.delCartItem(user, tipo, nome, sab, tam)
+
+    def getCartTot(self, username):
+        Tot = 0
+        cart = self.__model.getUserCart(username)
+
+        for item in cart:
+            Tot += float(item["preco"])
+        
+        Tot = round(Tot, 2)
+                        
+        return Tot
+    
+    def getCart(self, username):
+        cart = self.__model.getUserCart(username)
+        return cart
+    
+    def SendPedido(self, username):
+        cart = self.__model.getUserCart(username)
+        pedido = Pedido(username, cart)
+        self.__pedidos.book(pedido)
+        self.__model.addToPed(pedido)
+        self.__model.delCart(username)
+        return True

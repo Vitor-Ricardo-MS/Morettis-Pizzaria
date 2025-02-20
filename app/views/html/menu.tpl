@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/css/menu.css?V123124">
+    <link rel="stylesheet" type="text/css" href="/static/css/menu.css?V123124123">
+    <script src="/static/js/websocket/socket.io.min.js?V12354"></script>
     <title>Menu</title>
 </head>
 <body>
@@ -36,6 +37,7 @@
                     <div class="item">
                         <div class="itemImg"><img class='img' src={{'../static/img/Piizzaa.png?V1.1'}}/></div>
                         <div class="itemInfo">
+                            <input class="tipoitem" type="hidden" id="tipoitem" name="tipoitem" value="pizza">
                             <div class="caixaNome">
                                 <div class="nomeitem">
                                     <h2>Pizza</h2>
@@ -59,13 +61,14 @@
                     <div class="item">
                         <div class="itemImg"><img class='img' src={{'../static/img/Piizzaa.png?V1.1'}}/></div>
                         <div class="itemInfo">
+                            <input class="tipoitem" type="hidden" id="tipoitem" name="tipoitem" value="pizza">
                             <div class="caixaNome">
                                 <div class="nomeitem">
                                     <h2>Pizza</h2>
                                 </div>
                                 <h2>_</h2>
                                 <div class="tamanho">
-                                    <h2>Média</h2>
+                                    <h2>Media</h2>
                                 </div>
                             </div>
                             <div class="info">
@@ -82,6 +85,7 @@
                     <div class="item">
                         <div class="itemImg"><img class='img' src={{'../static/img/Piizzaa.png?V1.1'}}/></div>
                         <div class="itemInfo">
+                            <input class="tipoitem" type="hidden" id="tipoitem" name="tipoitem" value="pizza">
                             <div class="caixaNome">
                                 <div class="nomeitem">
                                     <h2>Pizza</h2>
@@ -110,6 +114,7 @@
                             <div class="item">
                                 <div class="itemImg"><img class='img' src={{'../static/img/Piizzaa.png?V1.1'}}/></div>
                                 <div class="itemInfo">
+                                    <input class="tipoitem" type="hidden" id="tipoitem" name="tipoitem" value="bebida">
                                     <div class="caixaNome">
                                         <div class="nomeitem">
                                             <h2>{{model.nome}}</h2>
@@ -135,6 +140,7 @@
                             <div class="item">
                                 <div class="itemImg"><img class='img' src={{'../static/img/Piizzaa.png?V1.1'}}/></div>
                                 <div class="itemInfo">
+                                    <input class="tipoitem" type="hidden" id="tipoitem" name="tipoitem" value="bebida">
                                     <div class="caixaNome">
                                         <div class="nomeitem">
                                             <h2>{{model.nome}}</h2>
@@ -161,6 +167,7 @@
                         <div class="item">
                             <div class="itemImg"><img class='img' src={{'../static/img/Piizzaa.png?V1.1'}}/></div>
                             <div class="itemInfo">
+                                <input class="tipoitem" type="hidden" id="tipoitem" name="tipoitem" value="sobremesa">
                                 <div class="caixaNome">
                                     <div class="nomeitem">
                                         <h2>{{model.nome}}</h2>
@@ -193,7 +200,7 @@
                         <img class='img' src={{'../static/img/Piizzaa.png?V1.1'}}/>
                     </div>
                     <div class="popupText">
-                        <input type="hidden" id="tipoProd" name="tipoProd" value="">
+                        <input class="tipoProd" type="hidden" id="tipoProd" name="tipoProd" value="">
                         <div class="inputs nome" id="Nome">
                             <h2>Produto:</h2>
                             <input class="nomeProd" type="text" id="nomeProd" name="nomeProd" value="" required disabled>
@@ -214,12 +221,16 @@
                         </div>
                     </div>
                     <div class="popupButt">
-                        <button>Adicionar</button>
+                        %if current_user:
+                            <button class="AddCartBtn">Adicionar</button>
+                        %else:
+                            <a href="/login"><button>Login</button></a>
+                        %end
                     </div>
                 </div>
             </div>
         </div>
 
-        <script src = "../static/js/menu.js?V1.7"></script>
+        <script src = "../static/js/menu.js?V2"></script>
 </body>
 </html>
