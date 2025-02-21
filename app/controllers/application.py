@@ -38,9 +38,9 @@ class Application():
             return content()
         else:
             return content(parameter)
-
-    def get_session_id(self):
-        return request.get_cookie('session_id')
+    
+    def tela_inicial(self):
+        return template('app/views/html/tela_inicial')
     
     def login(self):
         return template('app/views/html/login')
@@ -48,26 +48,6 @@ class Application():
     def signup(self):
         return template('app/views/html/signup')
     
-    def tela_inicial(self):
-        return template('app/views/html/tela_inicial')
-    
-    def admin(self):
-        session_id = self.get_session_id()
-        user = self.__model.getCurrentUser(session_id)
-        if user:
-            if user.username == "admin":
-                return template('app/views/html/admin', current_user=user, Allprodutos = self.produtos.models, Allsabores = self.sabores.sabores)
-            return redirect(f'/usuario/{user.username}')
-        return redirect('/login')
-    
-    def pedadmin(self):
-        session_id = self.get_session_id()
-        user = self.__model.getCurrentUser(session_id)
-        if user:
-            if user.username == "admin":
-                return template('app/views/html/pedadmin', current_user=user)
-            return redirect(f'/usuario/{user.username}')
-        return redirect('/login')
     
     def menu(self, username=None):
         if username:
@@ -88,6 +68,27 @@ class Application():
             else:
                 return redirect('/login')
         return redirect('/login')
+    
+    def admin(self):
+        session_id = self.get_session_id()
+        user = self.__model.getCurrentUser(session_id)
+        if user:
+            if user.username == "admin":
+                return template('app/views/html/admin', current_user=user, Allprodutos = self.produtos.models, Allsabores = self.sabores.sabores)
+            return redirect(f'/usuario/{user.username}')
+        return redirect('/login')
+    
+    def pedadmin(self):
+        session_id = self.get_session_id()
+        user = self.__model.getCurrentUser(session_id)
+        if user:
+            if user.username == "admin":
+                return template('app/views/html/pedadmin', current_user=user)
+            return redirect(f'/usuario/{user.username}')
+        return redirect('/login')
+    
+    def get_session_id(self):
+        return request.get_cookie('session_id')
         
     def is_authenticated(self, username):
         session_id = self.get_session_id()
@@ -149,7 +150,6 @@ class Application():
             elif value == "false":
                 temp = False
                 self.produtos.update(tipo, nome, param, temp)
-            return False
         elif param == "nome":
             print('nome')
             self.produtos.update(tipo, nome, param, value)

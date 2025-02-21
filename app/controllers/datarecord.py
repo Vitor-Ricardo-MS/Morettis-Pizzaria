@@ -75,28 +75,23 @@ class DataRecord():
         return False
     
     def delCartItem(self, usuario, tipo, nome, sab, tam):
-        if tipo == "pizza":
-            for model in self.__user_accounts:
-                if model.username == usuario.username:
-                    for index, item in enumerate(model.cart, start=0):
-                        if item["tipo"] == tipo:
+        for model in self.__user_accounts:
+            if model.username == usuario.username:
+                for index, item in enumerate(model.cart, start=0):
+                    if item["tipo"] == tipo:
+                        if tipo == "pizza":
                             if item["tamanho"] == tam:
                                 if item["sabor"] == sab:
                                     model.cart.pop(index)
                                     self.save()
                                     return True
-            return False
-        else:
-            for model in self.__user_accounts:
-                if model.username == usuario.username:
-                    for index, item in enumerate(model.cart, start=0):
-                        if item["tipo"] == tipo:
+                        else:
                             if item["nome"] == nome:
                                 if item["sabor"] == sab:
                                     model.cart.pop(index)
                                     self.save()
                                     return True
-            return False
+        return False
     
     def getUserCart(self, username):
         for user in self.__user_accounts:

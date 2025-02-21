@@ -33,14 +33,14 @@ class PedRecord():
         
         return new_id
     
-    def getPeds(self):
-        ped_data = [vars(ped) for ped in self.__Pedidos]
-        return ped_data
-
     def save(self):
         with open("app/controllers/db/pedidos.json", "w") as arquivo_json:
             ped_data = [vars(ped) for ped in self.__Pedidos]
             json.dump(ped_data, arquivo_json)
+    
+    def getPeds(self):
+        ped_data = [vars(ped) for ped in self.__Pedidos]
+        return ped_data
     
     def delPed(self, ped: Pedido):
         for index, pedido in enumerate(self.__Pedidos, start=0):

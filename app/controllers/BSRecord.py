@@ -19,7 +19,6 @@ class BSRecord():
                         self.models.append(Bebida(**data))
                     elif data["tipo"] == "sobremesa":
                         self.models.append(Sobremesa(**data))
-
         except FileNotFoundError:
             self.models.append(Bebida("bebida", 5.00, "Água", False))
 
@@ -32,9 +31,7 @@ class BSRecord():
             return 0
 
         self.models.append(new_model)
-        with open("app/controllers/db/bs.json", "w") as arquivo_json:
-            model_data = [vars(model) for model in self.models]
-            json.dump(model_data, arquivo_json)
+        self.save()
     
     def update(self, tipo, nome, paramname, paramvalue):
         with open("app/controllers/db/bs.json", "w") as arquivo_json:

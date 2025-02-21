@@ -27,6 +27,11 @@ class SaborRecord():
             sabor_data = [vars(sabor) for sabor in self.sabores]
             json.dump(sabor_data, arquivo_json)
 
+    def save(self):
+        with open("app/controllers/db/sabores.json", "w") as arquivo_json:
+            sabor_data = [vars(sabor) for sabor in self.sabores]
+            json.dump(sabor_data, arquivo_json)
+
     def updateName(self, tipo, nome, newnome):
         for model in self.sabores:
             if model.tipo == tipo:
@@ -88,11 +93,6 @@ class SaborRecord():
                                 self.save()
                                 return True           
         return False
-        
-    def save(self):
-        with open("app/controllers/db/sabores.json", "w") as arquivo_json:
-            sabor_data = [vars(sabor) for sabor in self.sabores]
-            json.dump(sabor_data, arquivo_json)
 
     def modelExists(self, tipo, nome=None):
         for index, model in enumerate(self.sabores, start=1):
