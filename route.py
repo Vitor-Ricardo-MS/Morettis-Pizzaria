@@ -27,6 +27,19 @@ def serve_static(filepath):
 def action_tela_inicial():
     return ctl.render('tela_inicial')
 
+@app.route('/login', method='GET')
+def login():
+    return ctl.render('login')
+
+@app.route('/signup', method='GET')
+def signup():
+    return ctl.render('signup')
+    
+@app.route('/menu', method='GET')
+@app.route('/menu/<username>', methods='GET')
+def menu(username=None):
+    return ctl.render('menu', username)
+
 @app.route('/usuario', methods='GET')
 @app.route('/usuario/<username>', methods='GET')
 def action_usuario(username=None):
@@ -34,15 +47,6 @@ def action_usuario(username=None):
         redirect('/login')
     else:
         return ctl.render('usuario', username)
-    
-@app.route('/menu', method='GET')
-@app.route('/menu/<username>', methods='GET')
-def menu(username=None):
-    return ctl.render('menu', username)
-
-@app.route('/login', method='GET')
-def login():
-    return ctl.render('login')
 
 @app.route('/admin', method='GET')
 def admin():
@@ -51,10 +55,6 @@ def admin():
 @app.route('/pedadmin', method='GET')
 def pedadmin():
     return ctl.render('pedadmin')
-
-@app.route('/signup', method='GET')
-def signup():
-    return ctl.render('signup')
 
 # get value
 
@@ -74,8 +74,7 @@ def action_signup():
     passwordconf = request.forms.get('passwordconf')
     session_id, username = ctl.signup_user(username, password, passwordconf)
     if session_id:
-        response.set_cookie('session_id', session_id, httponly=True, \
-        secure=True, max_age=3600)
+        response.set_cookie('session_id', session_id, httponly=True, secure=True, max_age=3600)
         redirect(f'/usuario/{username}')
     else:
         return redirect('/signup')
@@ -86,8 +85,7 @@ def action_login():
     password = request.forms.get('password')
     session_id, username = ctl.authenticate_user(username, password)
     if session_id:
-        response.set_cookie('session_id', session_id, httponly=True, \
-        secure=True, max_age=3600)
+        response.set_cookie('session_id', session_id, httponly=True, secure=True, max_age=3600)
         redirect(f'/usuario/{username}')
     else:
         return redirect('/login')
