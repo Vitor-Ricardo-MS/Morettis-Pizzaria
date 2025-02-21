@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/static/css/admin.css?V2.3">
+    <link rel="stylesheet" type="text/css" href="/static/css/admin.css?V2.5">
     <title>Admin</title>
 </head>
 <body>
@@ -12,6 +12,7 @@
         <div class="BarraTopoText">
             <h2>Menu de Administração de Produtos</h2>
         </div>
+        <a href="/pedadmin"><button>Pedidos</button></a>
         <a href="/menu/{{current_user.username}}"><button>Menu</button></a>
         <a href="/usuario/{{current_user.username}}"><button>Usuário</button></a>
     </div>

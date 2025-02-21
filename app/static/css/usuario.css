@@ -116,7 +116,6 @@ body button:active {
 .item {
     color: #000000;
     display: flex;
-    margin: 1%;
     background-color: white;
     border-radius: 5px;
     height: 15vh;
@@ -208,8 +207,65 @@ body button:active {
     overflow-y: scroll;
 }
 
-.PedsContents h3 {
-    margin: 0%;
+.Ped {
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+    width: 98%;
+    margin: 1%;
+}
+
+.Ped:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+.PedInfo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PedInfo h3 {
+    width: 100%;
+    text-align: center;
+    margin: 0.5%;
+}
+
+.PedList {
+    width: 100%;
+}
+
+.PedBott{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: right;
+}
+
+.PedBott h3 {
+    width: fit-content;
+    height: fit-content;
+    margin: 0.5%;
+    font-size: 1rem;
+}
+
+.Items {
+    width: 100%;
+    gap: 0.25%;
+}
+
+.Header {
+    background-color: #414141;
+    color: white;
+}
+
+.Item {
+    background-color: #a5a5a5;
+}
+
+.Item td{
+    text-align: left;
 }
 
 /*Popups*/

@@ -45,9 +45,12 @@ def login():
     return ctl.render('login')
 
 @app.route('/admin', method='GET')
-@app.route('/admin/<username>', method='GET')
-def admin(username=None):
-    return ctl.render('admin', username)
+def admin():
+    return ctl.render('admin')
+
+@app.route('/pedadmin', method='GET')
+def pedadmin():
+    return ctl.render('pedadmin')
 
 @app.route('/signup', method='GET')
 def signup():
@@ -60,12 +63,6 @@ def get_options():
     input_value = request.query.input_value
     response.content_type = 'application/json'
     return ctl.getOptions(input_value)
-
-@app.route('/get-items', method='GET')
-def get_items():
-    input_value = request.query.input_value
-    response.content_type = 'application/json'
-    return ctl.getItems(input_value)
 
 #-----------------------------------------------------------------------------
 # POST:
@@ -174,6 +171,8 @@ async def disconnect(sid):
 def AddToCart(sid, tipoProd, nomeProd, tamProd, precProd, sabProd):
     prec = float(precProd)
     ctl.addToCart(tipoProd, nomeProd, tamProd, prec, sabProd)
+    Cart = ctl.getCurrCart()
+    sio.emit("UpdUserCart", Cart)
     sio.emit("AddToCart")
 
 @sio.event
@@ -194,8 +193,21 @@ def UpdPrecTotCart(sid, username):
 @sio.event
 def SendPedido(sid, username):
     ctl.SendPedido(username)
+    Peds = ctl.getPeds()
+    sio.emit("UpdPeds", Peds)
     sio.emit("SendPedido")
 
+@sio.event
+def UpdPeds(sid):
+    Peds = ctl.getPeds()
+    sio.emit("UpdPeds", Peds)
+
+@sio.event
+def DelPed(sid, usu, id):
+    ctl.delPed(usu, id)
+    Peds = ctl.getPeds()
+    sio.emit('UpdPeds', Peds)
+    sio.emit('DelPed')
 
 #-----------------------------------------------------------------------------
 

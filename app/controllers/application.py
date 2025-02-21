@@ -20,7 +20,8 @@ class Application():
             'login' : self.login,
             'signup' : self.signup,
             'menu' : self.menu,
-            'admin': self.admin
+            'admin': self.admin,
+            'pedadmin': self.pedadmin
         }
 
         self.__model= DataRecord()
@@ -56,6 +57,15 @@ class Application():
         if user:
             if user.username == "admin":
                 return template('app/views/html/admin', current_user=user, Allprodutos = self.produtos.models, Allsabores = self.sabores.sabores)
+            return redirect(f'/usuario/{user.username}')
+        return redirect('/login')
+    
+    def pedadmin(self):
+        session_id = self.get_session_id()
+        user = self.__model.getCurrentUser(session_id)
+        if user:
+            if user.username == "admin":
+                return template('app/views/html/pedadmin', current_user=user)
             return redirect(f'/usuario/{user.username}')
         return redirect('/login')
     
@@ -198,6 +208,13 @@ class Application():
         cart = self.__model.getUserCart(username)
         return cart
     
+    def getCurrCart(self):
+        session_id = self.get_session_id()
+        username = self.__model.getUserName(session_id)
+
+        cart = self.__model.getUserCart(username)
+        return cart
+    
     def SendPedido(self, username):
         cart = self.__model.getUserCart(username)
         pedido = Pedido(username, cart)
@@ -205,3 +222,11 @@ class Application():
         self.__model.addToPed(pedido)
         self.__model.delCart(username)
         return True
+    
+    def getPeds(self):
+        peds = self.__pedidos.getPeds()
+        return peds
+    
+    def delPed(self, username, id):
+        self.__model.delFromPed(username, id)
+        self.__pedidos.delPed(username, id)

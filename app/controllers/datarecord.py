@@ -120,3 +120,13 @@ class DataRecord():
                 self.save()
                 return True
         return False
+    
+    def delFromPed(self, username, id):
+        for user in self.__user_accounts:
+            if user.username == username:
+                for index, ped in enumerate(user.pedidos, start=0):
+                    if ped["id"] == id:
+                        user.pedidos.pop(index)
+                        self.save()
+                        return True
+        return False

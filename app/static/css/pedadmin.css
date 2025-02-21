@@ -1,0 +1,170 @@
+.BarraTopo {
+    color: white;
+    display: flex;
+    user-select: none;
+    background: #414141;
+    margin-bottom: 20px;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    gap: 5px;
+}
+
+.BarraTopoText {
+    width: 73.8%;
+    margin-left: 10px;
+}
+
+body button {
+    box-shadow: 2px 2px 0 2px #4b4b4b;
+    border-width: 1px;
+    border-color: #979797;
+    background-color: #737373;
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: Rubik-Bold;
+    /* color: #060014; */
+    color: white;
+}
+
+body button:active {
+    border: none;
+    background-color: #4b4b4b;
+}
+
+.Peds {
+    margin: 1%;
+    margin-left: 0;
+    width: 99vw;
+    height: 87.5vh;
+    background-color: #919191;
+}
+
+.PedsTopo {
+    color: white;
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    background-color: #414141;
+}
+
+.PedsTopo h3{
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+}
+
+.PedsContents {
+    margin: 0.5%;
+    height: 81vh;
+    background-color: #797979;
+    overflow-y: scroll;
+}
+
+.Ped {
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+    width: 98%;
+    margin: 1%;
+}
+
+.Ped:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+.PedInfo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PedInfo h3 {
+    width: 100%;
+    text-align: center;
+    margin: 0.5%;
+}
+
+.PedList {
+    width: 100%;
+}
+
+.PedBott{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: right;
+}
+
+.PedBott h3 {
+    width: fit-content;
+    height: fit-content;
+    margin: 0.5%;
+    font-size: 1rem;
+}
+
+.Items {
+    width: 100%;
+    gap: 0.25%;
+}
+
+.Header {
+    background-color: #414141;
+    color: white;
+}
+
+.Item {
+    background-color: #a5a5a5;
+}
+
+.Item td{
+    text-align: left;
+}
+
+.DelPopup {
+    color: white;
+    width: 0%;
+    height: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    visibility: hidden;
+}
+
+.DelPopup.show {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(41, 41, 41, 0.5);
+    visibility: visible;
+}
+
+.popMenu {
+    display: block;
+    border-radius: 7px;
+    background-color: #616161;
+    width: 40vw;
+}
+
+.popMenu h2 {
+    width: 100%;
+    text-align: center;
+}
+
+.popMenu h3 {
+    width: 100%;
+    text-align: center;
+}
+
+.popButts {
+    display: flex;
+    width: 100%;
+    gap: 2%;
+    align-items: center;
+    justify-content: center;
+}

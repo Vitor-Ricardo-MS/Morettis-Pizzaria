@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Página Usuário</title>
-   <link rel="stylesheet" type="text/css" href="/static/css/usuario.css?V3">
+   <link rel="stylesheet" type="text/css" href="/static/css/usuario.css?V4">
    <script src="/static/js/websocket/socket.io.min.js?V3"></script>
 </head>
 <body>
@@ -71,6 +71,6 @@
          </div>
       </div>
 
-   <script src="/static/js/usuario.js?V1.4"></script>
+   <script src="/static/js/usuario.js?V2"></script>
 </body>
 </html>

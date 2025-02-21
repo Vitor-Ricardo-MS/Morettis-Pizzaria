@@ -3,7 +3,7 @@
     display: flex;
     user-select: none;
     background: #414141;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     width: 100%;
     height: fit-content;
     align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .BarraTopoText {
-    width: 82.3%;
+    width: 73.8%;
     margin-left: 10px;
 }
 
@@ -35,16 +35,27 @@
 }
 
 .prods {
-    height: 45vh;
+    height: 44vh;
+}
+
+.prods h2{
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
 }
 
 .saborss {
-    height: 45vh;
+    height: 44vh;
+}
+
+.saborss h2{
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
 }
 
 .shelf {
     display: flex;
     width: 100%;
+    height: 40.1vh;
     gap: 0.2%;
 }
 
@@ -103,7 +114,7 @@
     display: flex;
     background-color: rgb(201, 201, 201);
     width: 100%;
-    height: 35vh
+    height: 34vh
 }
 
 .PrCrContent {
